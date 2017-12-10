@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 组件与vue实例类似 需要注册后才可以使用   两种方式全局注册和局部注册
+        //全局注册后任何地方都可以使用组件
+        Vue.component('my-component',{
+            //选项  注意template里 组件最外层必须有一个容器包裹  
+            // 不能是 <div>name</div><div>age</div>
+            template:'<div>我的第一个组件</div>'
+        })
+        var app = new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>
