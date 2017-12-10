@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <app>
+        <!-- 主导航 -->
+        <menu-main></menu-main>
+        <!-- 子导航 -->
+        <menu-sub></menu-sub>
+        <div class="container">
+            <!-- 左菜单  右内容 -->
+            <menu-left></menu-left>
+            <container></container>
+        </div>
+        <!-- 底部 -->
+        <app-footer></app-footer>
+    </app>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 当需要组件组合使用  混合父组件的内容和子组件的模板时 就会用到slot
+        // 这个过程叫内容分发
+        // app组件 不知道他的挂载点有什么内容
+        // app组件 很可能有自己的模板
+
+        // props传递数据  events触发事件 slot内容分发 构成vue组件的三个api来源 在复杂的组件也是由此构成的
+        
+    </script>
+</body>
+</html>
