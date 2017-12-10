@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>父级的数据initCount==>{{initCount}}</p>
+        <my-tag :init-count="initCount"></my-tag>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // vue2.0 props是单向的  传递到子组件  子组件对数据修改不会映射到父级
+        Vue.component('my-tag',{
+            //组件传参props
+            props:['initCount'],
+            template:'<div>展示父级的数据：{{count}}'+
+                        '<button @click="add">点击增加</button>'+
+                     '</div>',
+            data:function(){
+                return{
+                    // 把父级传递的数据当作组件初始化时候的初始值 
+                    count:this.initCount
+                }
+            },
+            methods:{
+                add:function(){
+                    // 改变本地的count 不会映射到父级
+                    this.count++;
+                }
+            }
+        })
+        var app = new Vue({
+            el:'#app',
+            data:{
+                initCount:1
+            }
+        })
+    </script>
+</body>
+</html>

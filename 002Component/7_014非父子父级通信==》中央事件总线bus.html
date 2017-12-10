@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <my-tag></my-tag>
+        
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+
+        // this.$dispatch('on-msg','来自内部组件的数据');这是vue1.0 在2.0已经废除了
+        // 创建了一个bus的空vue实例  他就是中介  负责 接受消息 和发送消息 
+        var bus = new Vue();
+        // 全局组件
+        Vue.component('my-tag',{
+            template:`
+                    <button @click="handleMsg">（bus）</button>
+                    `,
+            methods:{
+                handleMsg:function(){
+                    alert('我要租回龙观附近的房子 2居室的房子==>中介')
+                    bus.$emit('on-msg','需求回龙观两居室');
+                }
+            }
+
+        })
+        // 
+        var app = new Vue({
+            el:'#app',
+            data:{
+                msg:''
+            },
+            mounted:function(){
+                var _this = this;
+                bus.$on('on-msg',function(msg){
+                    // 我是收到了消息  一房东
+                    _this.msg = msg;
+                })
+            }
+        })
+    </script>
+</body>
+</html>

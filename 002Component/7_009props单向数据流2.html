@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>父级的数据initWidth==>{{initWidth}}</p>
+        <my-tag :init-width="initWidth"></my-tag>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // vue2.0 props是单向的  传递到子组件  子组件对数据修改不会映射到父级
+        Vue.component('my-tag',{
+            //组件传参props
+            props:['initWidth'],
+            template:'<div :style="style">组件内容</div>',
+            computed:{
+                style:function(){
+                    return {
+                        width:this.initWidth+'px',
+                        border:'1px solid red'
+                    }
+                }
+            }
+        })
+        var app = new Vue({
+            el:'#app',
+            data:{
+                initWidth:300
+            }
+        })
+        // 注意 由于在js中  对象和数组是引用类型  指向同一个内存空间 所以props针对数组和对象时
+        // 在子组件修改传递的数据会影响父组件
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-tag msg="[1,2,3]"></my-tag>
+        <my-tag :msg="[1,2,3]"></my-tag>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('my-tag',{
+            //组件传参props
+            props:['msg'],
+            template:'<div>展示传递父级的数据：{{msg.length}}</div>'
+            // 不绑定属性 的msg的值是字符串       msg='[1,2,3]';
+            // 绑定属性的msg是对应数据类型的对象  :msg=[1,2,3] 
+        })
+        var app = new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>

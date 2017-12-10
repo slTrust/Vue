@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-tag msg="父组件的数据"></my-tag>
+        <my-tag2 err-msg="父组件的数据"></my-tag2>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('my-tag',{
+            //组件传参props
+            props:['msg'],
+            template:'<div>展示传递的数据：{{msg}}</div>'
+            //props是父级传递的数据  data是自身的数据
+        })
+
+        Vue.component('my-tag2',{
+            // 由于HTML特性不区分大小写 当使用DOM模板时 驼峰命名的props名称要用 中划线'-'分割
+            // 组件传参props  父级<my-tag2 err-msg="父组件的数据"></my-tag2> 要用驼峰
+            // 如果是字符串模板仍然可以忽略这些限制
+            props:['errMsg'],
+            template:'<div>展示传递的数据：{{msg}}</div>'
+            //props是父级传递的数据  data是自身的数据
+        })
+        var app = new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>

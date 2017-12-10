@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>父组件接受数据  ==》总数{{total}}</p>
+        <my-tag v-model="total"></my-tag>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('my-tag',{
+            template:`
+                    <div>
+                        <p>子组件</p>
+                        <button @click="add">+1</button>
+                    </div>
+                    `,
+            data:function(){
+                return {
+                    count:0
+                }
+            },
+            methods:{
+                add:function(){
+                    this.count++;
+                    // 在使用组件的父级并没有在 组件标签上 @input="handle" 而是使用v-model 这也是一个语法糖
+                    this.$emit('input',this.count);
+                }
+            }
+
+        })
+        var app = new Vue({
+            el:'#app',
+            data:{
+                total:0
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-component></my-component>
+        <p>点击任何一个都会同时更新 组件间不是独立的 因为引用的对象是全局的</p>
+        <my-tag></my-tag>
+        <my-tag></my-tag>
+        <my-tag></my-tag>
+        <p>不使用外部数据</p>
+        <my-tag2></my-tag2>
+        <my-tag2></my-tag2>
+        <my-tag2></my-tag2>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 组件与vue实例类似  也有data methods computed等
+        // data和实例稍微有区别 
+        //  data必须是函数
+        //  并且数据必须是 return返回的
+        
+        Vue.component('my-component',{
+            template:'<div>{{msg}}</div>',
+            data:function(){
+                return {
+                    msg:'我是组件的消息'
+                }
+            }
+        })
+        //外部全局对象
+        var data={ count:0}
+        // js对象是引用关系 如果引用的是外部的对象  那这个对象就是共享的
+        Vue.component('my-tag',{
+            template:'<div @click="count++">{{count}}</div>',
+            data:function(){
+                return data;
+                
+            }
+        })
+        //相互独立的组件
+        Vue.component('my-tag2',{
+            template:'<div @click="count++">{{count}}</div>',
+            data:function(){
+                return {
+                    count:0
+                };
+                
+            }
+        })
+        var app = new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>

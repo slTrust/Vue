@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-tag :msg="parentMsg"></my-tag>
+        <button @click="change">改变父级的parentMsg的值</button>
+        父级的值==>{{parentMsg}}
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('my-tag',{
+            //组件传参props
+            props:['msg'],
+            template:'<div>展示传递父级的数据：{{msg}}</div>'
+            //props是父级传递的数据  data是自身的数据
+        })
+        var app = new Vue({
+            el:'#app',
+            data:{
+                parentMsg:1
+            },
+            methods:{
+                change:function(){
+                    this.parentMsg++;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

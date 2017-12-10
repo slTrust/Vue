@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>父组件的数据msg==>{{msg}}</p>
+        <my-tag></my-tag>
+        
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // this.$parent可以直接访问该组件的父实例或组件
+        // 尽管vue允许这样操作  但是在业务中应尽可能避免依赖父组件的数据
+        // 更不应该主动修改他的数据
+        Vue.component('my-tag',{
+            template:`
+                    <button @click="handleMsg">通过父链直接修改数据</button>
+                    `,
+            methods:{
+                handleMsg:function(){
+                    // 访问到父链后 ，可以做任何操作 如修改数据
+                   this.$parent.msg = '来自组件的修改';
+                }
+            }
+
+        })
+        // 
+        var app = new Vue({
+            el:'#app',
+            data:{
+                msg:''
+            }
+        })
+    </script>
+</body>
+</html>
