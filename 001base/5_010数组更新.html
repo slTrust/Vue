@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <template v-for="item in books">
+                <li>
+                    书名：{{item.name}} ==》
+                    作者：{{item.author}}
+                </li>
+            </template>
+            <button @click="add">通过索引设置数组项 不会触发视图的更新</button><br>
+            <button @click="setLen">通过改变数组length 不会触发视图的更新</button>
+            <button @click="add2">解决方式</button>
+        </ul>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',  
+            data:{
+                books:[
+                    {name:'js001',author:'李四'},
+                    {name:'js002',author:'张三'},
+                    {name:'js003',author:'王五'}
+                ]
+            },
+            methods:{
+                // 以下方式操作数组  vue检测不到
+                add:function(){
+                    
+                    console.log(this.books)
+                    this.books[3] = {name:'js00100',author:'李222'};
+                    console.log(this.books)
+                },
+                setLen:function(){
+                    this.books.length = 1;
+                    console.log(this.books)
+                },
+                add2:function(){
+                    this.$set(this.books,3,{name:'js022100',author:'王222'})
+                }
+            }
+        })
+         //解决方式
+        //Vue.set(app.books,3,{name:'js022100',author:'王222'})
+        
+    </script>
+</body>
+</html>

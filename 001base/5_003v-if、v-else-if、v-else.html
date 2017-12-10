@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <div id="app">
+       <p v-if="status===1">status===1时执行</p>
+       <p v-else-if="status===2">status===2时执行</p>
+       <p v-else>最后的情况</p>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',  
+            data:{
+                status:1
+            }
+        })
+        // v-else-if要紧跟 v-if之后
+        // v-else要紧跟 v-if 或 v-else-if之后
+
+    </script>
+</body>
+</html>

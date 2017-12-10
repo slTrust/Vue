@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="msg">
+        {{msg}}
+        <p v-once>{{msg}}</p>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        // 定义它的元素或组件只渲染一次  包括元素或组件的所有子节点  首次渲染后不再随数据变化
+        var app = new Vue({
+            el:'#app',  
+            data:{
+                msg:'一段文本'
+            }
+        })
+
+        // 业务中使用较少 当你需要进一步优化性能时 可能会用到
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <div id="app">
+       <template v-if="type === 'name'">
+           <label>用户名：</label>
+           <input type="text" placeholder="输入用户名">
+       </template>
+       <template v-if="type === 'pass'">
+            <label>密码：</label>
+            <input type="text" placeholder="输入密码">
+        </template>
+        <button @click="toggleClick">切换输入类型</button>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',  
+            data:{
+              type:'name'
+            },
+            methods:{
+                toggleClick:function(){
+                    this.type = this.type ==='name'?'pass':'name';
+                }
+            }
+        })
+        //出于性能考虑 渲染元素时 会尽可能复用已有的元素而非重新渲染  
+        //点击后dom变了  但是之前的输入框输入的内容没有改变  只是替换了placeholder内容
+        // 说明input复用了
+
+        // 如果你不想这样  可以使用key属性
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <div id="app">
+       <a href="http://www.baidu.com" @click="show('禁止打开',$event)">阻止默认行为的</a>
+       
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',  
+            data:{
+               count:0
+            },
+            methods:{
+                show:function(msg,event){
+                    //这是原生用法
+                    event.preventDefault();
+                    alert(msg)
+                }
+            }
+        })
+        /*
+        修饰符
+        .stop  阻止冒泡
+        .prevent 阻止默认事件
+        .capture 使用事件捕获模式
+        .self 只当事件在该元素本身触发时触发回调
+        .once 只触发一次
+
+        也可以串联使用
+        @click.stop.prevent =""1_001.html
+
+        表单元素监听键盘事件  可以使用按键修饰符
+        @keyup.13 = "submit"
+        还可以自己配置具体按键
+        //全局定义后就可以使用  @keyup.f1
+        Vue.config.keyCodes.f1 = 112;
+
+        还提供了快捷名称
+        .enter
+        .tab
+        .delete
+        .esc
+        .up
+        .down
+        .left
+        .right
+        //组合键 可以配合其他键一起使用
+        .ctrl
+        .alt
+        .shift
+        .meta
+        @keyup.shift.83  shift+s
+        @click.ctrl  ctrl+click
+        */
+        
+    </script>
+</body>
+</html>

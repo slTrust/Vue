@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- v-for ="item in books"  还可以用 of-->
+        <ul>
+            <li v-for="item in books">
+                {{item.name}}
+            </li>
+            <hr>
+            <li v-for="item of books">
+                {{item.name}}
+            </li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="(value,index) in books">
+                {{index}}-{{value.name}}
+            </li>
+        </ul>
+        <hr>
+        <p>用在template</p>
+        <ul>
+            <template v-for="item in books2">
+                <li>书名{{item.name}}</li>
+                <li>作者{{item.author}}</li>
+            </template>
+        </ul>
+        <p>遍历对象</p>
+        <ul>
+            <li v-for="(value,key,index) in obj">{{index}}-{{key}}--{{value}}</li>
+        </ul>
+        <p>遍历数字</p>
+        <ul>
+            <li v-for="n in 10">
+                {{n}}
+            </li>
+        </ul>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',  
+            data:{
+                books:[
+                    {name:'js001'},
+                    {name:'js002'},
+                    {name:'js003'}
+                ],
+                books2:[
+                    {name:'js001',author:'李四'},
+                    {name:'js002',author:'张三'},
+                    {name:'js003',author:'王五'}
+                ],
+                obj:{
+                    name:'hjx',
+                    age:25,
+                    gender:'男'
+                }
+            }
+        })
+       
+    </script>
+</body>
+</html>

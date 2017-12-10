@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p v-show="show">v-show操作的是css的 display属性</p>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',  
+            data:{
+              show:true
+            }
+        })
+        // v-show 操作的css属性  无论条件与否都会被编译
+        // 适合频繁切换的场景 
+
+
+
+        // v-if 才是真正的条件渲染 只有条件为真时才会编译
+        // 适合不经常改变的场景   因为它切换开销较大
+    </script>
+</body>
+</html>

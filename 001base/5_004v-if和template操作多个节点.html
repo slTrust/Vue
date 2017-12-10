@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <div id="app">
+       <template v-if="status===1">
+            <p>文字</p>
+            <p>文字</p>
+            <p>文字</p>
+       </template>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',  
+            data:{
+                status:1
+            }
+        })
+        // 当条件为真时 当前元素/组件及所有子节点都被渲染 
+        // 为假时移除
+        // 如果判断的是多个元素  则要在vue.js内置的template元素上使用条件指令 最终渲染的结果不会包含template
+
+        
+
+    </script>
+</body>
+</html>

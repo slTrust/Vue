@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <div id="app">
+        点击次数{{count}} <br>
+        <!-- 如果方法不需要传递参数  可以省略() -->
+        <button @click="add()">不穿参数</button>
+        <button @click="add(10)">传递参数</button>
+        <!-- 当这些viewMoudle销毁  对应的事件也会删除 -->
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',  
+            data:{
+               count:0
+            },
+            methods:{
+                add:function(incount){
+                    incount = incount||1;
+                    this.count+=incount;
+                }
+            }
+          
+        })
+        
+    </script>
+</body>
+</html>

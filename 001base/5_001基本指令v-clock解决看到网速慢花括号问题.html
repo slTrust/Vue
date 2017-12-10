@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak] { display:none;}
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        {{msg}}
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        // v-cloak不需要表达式  它是在vue实例结束编译时从绑定的html元素移除
+        // 通常和css使用  [v-cloak] { display:none;}
+        // 网速慢的时候 会看到{{msg}} 直到vue实例创建 编译模板时 dom才被替换 所以屏幕是会闪动的
+        // 它是解决初始化慢导致网页闪动的最佳实践 适用于简单的项目
+        // 在工程化项目里  不在需要他
+        var app = new Vue({
+            el:'#app',  
+            data:{
+                msg:'一段文本'
+            }
+        
+        })
+
+    </script>
+</body>
+</html>
