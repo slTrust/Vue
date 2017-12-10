@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       <p v-if="show">这是一些文本</p>
+       <button v-on:click="hide">点我 隐藏文本</button>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        // v-bind动态更新 html元素的属性  如 id class
+        var app = new Vue({
+            el:'#app',  
+            data:{
+                show:true
+            },
+            methods:{
+                hide:function(){
+                    //业务逻辑复杂时候  可以抽取函数
+                    this.close();
+                },
+                close:function(){
+                    this.show = false;
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>

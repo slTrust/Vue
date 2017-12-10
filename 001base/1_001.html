@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button v-if="showBtn" @click="handleMsg">点我</button>
+        <button v-if="!showBtn">你可能看不到</button>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                showBtn:true
+            },
+            methods:{
+                handleMsg:function(){
+                   alert('click')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       {{date}}
+       <br>
+       <span v-html="tag"></span>
+       <br>
+       <!-- 你想显示{{}} 要用v-pre -->
+       <span v-pre>{{非插值}}</span>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+       
+        var app = new Vue({
+            el:'#app',  
+            data:{
+                date:new Date(),
+                tag:'<a href="#">链接</a>'  //输出html标记 需要使用 v-html
+            },
+            mounted:function(){
+                var _this = this;
+                this.timer = setInterval(function(){
+                    _this.date = new Date(); //修改时间
+                },1000)
+            },
+            beforeDestroy:function(){
+                if(this.timer){
+                    clearInterval(this.timer); //销毁前清除我们的定时器
+                }
+            }
+
+
+        })
+      
+    </script>
+</body>
+</html>

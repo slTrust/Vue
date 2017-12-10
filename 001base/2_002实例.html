@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       {{name}}
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        //app就代表了 vue实例
+        var app = new Vue({
+            el:'#app',  //必不可少的就是el  它用于指定一个页面中存在的DOM元素来挂载Vue实例
+            //可以是css选择器  也可以是dom节点
+            data:{
+                name:'不懂就看高三'
+            }
+        })
+        // vue实例本身也代理了data对象里的所有属性
+        console.log(app.name)
+    </script>
+</body>
+</html>

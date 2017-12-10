@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in books">
+                {{item.name}}
+            </li>
+        </ul>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                books:[
+                    {name:'不懂就看高三'},
+                    {name:'你不知道的js'},
+                    {name:'js设计模式'},
+                    {name:'js函数式编程'}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{date|formatDate}}
+        
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        var padDate = function(value){
+            return value<10?'0'+value:value;
+        }
+        // 过滤器还可以串联
+        //{{msg|filter1|filter2}}
+        // 接受参数
+        // {{msg|filter('arg1','arg2')}}
+        var app = new Vue({
+            el:'#app',  
+            data:{
+               date:new Date()
+            },
+            filters:{
+                formatDate:function(value){
+                    var date = new Date(value);
+                    var year = date.getFullYear();
+                    var month = padDate(date.getMonth()+1);
+                    var day = padDate(date.getDate());
+                    var h = padDate(date.getHours());
+                    var m = padDate(date.getMinutes());
+                    var s = padDate(date.getSeconds());
+                    return year+'-'+month+'-'+day+'-'+h+'-'+m+'-'+s;
+
+                }
+            },
+            mounted:function(){
+                var _this = this;
+                this.timer = setInterval(function(){
+                    _this.date = new Date();
+                },1000);
+            },
+            beforeDestroy:function(){
+                if(this.timer){
+                    clearInterval(this.timer)
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>
