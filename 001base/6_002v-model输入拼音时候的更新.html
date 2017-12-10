@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" @input="handleInput" placeholder="输入。。。">
+        <p>输入的是：{{msg}}</p>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',  
+            data:{
+                msg:''
+            },
+            methods:{
+                handleInput:function(e){
+                    this.msg = e.target.value;
+                }
+            }
+        })
+        /*
+        如果输入拼音时候  希望时时更新 就要用@input 代替 v-model
+        @input=""  代替v-model 
+        
+        */
+       
+    </script>
+</body>
+</html>
