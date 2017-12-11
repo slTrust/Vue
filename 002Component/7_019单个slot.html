@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-com>
+            <p>分发的内容1</p>
+            <p>分发的内容2</p>
+        </my-com>
+        <hr>
+        <my-com></my-com>
+    </div>       
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('my-com',{
+            template:`<div>
+                        <h1>标题</h1>
+                        <slot>
+                            <p>我是默认显示的内容</p>
+                        </slot>
+                        <div>footer</div>
+                    </div>`
+        })
+
+        var app = new Vue({
+            el:'#app'
+        })        
+    </script>
+</body>
+</html>
