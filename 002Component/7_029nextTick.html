@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div id="div1" v-if="show">这是一段文本</div>
+        <button @click="getText">获取div的内容</button>
+    </div>       
+
+   
+   
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        
+        var app = new Vue({
+            el:'#app',
+           
+            data:{
+                show:false
+            },
+            methods:{
+                getText:function(){
+                    this.show = true;
+                    // show的值改变了  但是控制台会报错 
+                    // Vue在观察数据变化时 并不是直接更新DOM
+                    // 而是开启一个队列 ，并缓冲在同一事件循环中发生的所有的数据改变
+                    // 在缓冲时去掉重复数据，从而避免不必要的DOM操作
+                    // 最后在下一个事件循环tick中 Vue刷新队列并执行实际工作
+                    // 所以如果你for循环更改数据100次 它只会用最后一次的改变
+                    // var txt = document.getElementById('div1').innerHTML;
+                    // alert(txt)
+                    // $nextTick用来知道什么时候DOM更新完成
+                    this.$nextTick(function(){
+                        var txt = document.getElementById('div1').innerHTML;
+                        alert(txt);
+                    })
+                }
+            }
+        })        
+    </script>
+</body>
+</html>
