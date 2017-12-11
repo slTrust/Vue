@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-com :count="1"></my-com>
+    </div>       
+
+   
+   
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('my-com',{
+            props:{
+                count:{
+                    type:Number,
+                    default: 1
+                }
+            },
+            template:`
+                    <div class="child">
+                        <my-com :count="count+1" 
+                        v-if="count<3"></my-com>
+                    </div>`
+        })
+
+        var app = new Vue({
+            el:'#app'
+        })        
+    </script>
+</body>
+</html>

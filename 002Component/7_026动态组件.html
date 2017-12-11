@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <component :is="currentView"></component>
+        <button @click="change('A')">A组件</button>
+        <button @click="change('B')">B组件</button>
+        <button @click="change('C')">C组件</button>
+    </div>       
+
+   
+   
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+       
+        var app = new Vue({
+            el:'#app',
+            components:{
+                comA:{template:'<div>A组件</div>'},
+                comB:{template:'<div>B组件</div>'},
+                comC:{template:'<div>C组件</div>'}
+            },
+            data:{
+                currentView:'comA'
+            },
+            methods:{
+                change:function(name){
+                    this.currentView = 'com'+name;
+                }
+            }
+        })        
+    </script>
+</body>
+</html>
