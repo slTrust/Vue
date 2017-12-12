@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    </div>       
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        var MyCom = Vue.extend({
+            template:'<div>Hello {{name}}</div>',
+            data:function(){
+                return {
+                    name:'hjx'
+                }
+            }
+        }); 
+        // 了解就好  复杂需求时可能会用到的高级用法
+        new MyCom().$mount('#app')    
+        //也可以这样写
+        // new MyCom({
+        //     el:'#app'
+        // }) 
+    </script>
+</body>
+</html>
