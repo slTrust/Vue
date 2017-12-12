@@ -30,7 +30,7 @@
                     this.$emit('input',val);
                     this.$emit('on-change',val);
                 },
-                value:function(){
+                value:function(val){
                     this.updateValue(val);
                 }
             },
@@ -90,7 +90,7 @@
                 value:{
                     type:Number,
                     default:0
-                },
+                }
             }
         })
         var app = new Vue({
