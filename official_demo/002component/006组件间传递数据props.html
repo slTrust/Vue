@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!--
+            组件实例的作用域是孤立的。
+            所以不能再自组件里直接使用父组件的数据
+            父组件的数据需要通过 prop 才能下发到子组件中。
+        -->
+        <child message="hello!"></child>
+        <hr>
+        <p>注意props设置的名为myMsg时候  由于绑定属性是html要把驼峰转为- ==>组件定义里props:["myMsg"]  组件html上 my-msg="值" </p>
+        <child2 my-msg="hello22!"></child2>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    Vue.component('child', {
+        // 声明 props
+        props: ['message'],
+        // 就像 data 一样，prop 也可以在模板中使用
+        // 同样也可以在 vm 实例中通过 this.message 来使用
+        template: '<span>{{ message }}</span>'
+    })
+
+
+    Vue.component('child2', {
+        // 声明 props
+        props: ['myMsg'],
+        // 就像 data 一样，prop 也可以在模板中使用
+        // 同样也可以在 vm 实例中通过 this.message 来使用
+        template: '<span>{{ myMsg }}</span>'
+    })
+
+    new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>

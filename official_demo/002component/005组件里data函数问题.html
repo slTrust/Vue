@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>组件里data函数返回  指向 一个对象data={counter:0}</h2>
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <hr>
+        <h2>组件里data函数返回{counter:0}</h2>
+        <my-component></my-component>
+        <my-component></my-component>
+        <my-component></my-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    var data = { counter: 0 }
+    Vue.component('simple-counter', {
+        template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+        data: function(){
+            return  data
+            
+        }
+    })
+
+    Vue.component('my-component', {
+        template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+        data: function(){
+            return {
+                counter: 0
+            }
+        }
+    })
+
+    new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>
