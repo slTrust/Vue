@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    <!-- table 里 允许包含的元素有限制  只能是tr   thead tbody tfoot 
+        <table>
+            <my-row>...</my-row>
+        </table> 
+        自定义组件 <my-row> 会被当作无效的内容，因此会导致错误的渲染结果。
+        变通的方案是使用特殊的 is 特性：
+    -->
+    <table>
+        <tr is="my-row"></tr>
+    </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+       // 注册
+        Vue.component('my-row', {
+            template: '<div>A custom component!</div>'
+        })
+        
+        // 创建根实例
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+</html>
