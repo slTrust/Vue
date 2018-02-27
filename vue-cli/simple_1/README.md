@@ -2,6 +2,14 @@
 
 > A Vue.js project
 
+# 去除默认样式引入base.css
+
+``` bash
+#  src/assets/css/base.css
+引入的时候在App.vue里的style上
+@import './assets/css/base.css';
+```
+
 ## Build Setup
 
 ``` bash
