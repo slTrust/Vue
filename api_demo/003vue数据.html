@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{foo}}
+    </div>
+    <script>
+        /*
+        如果你在晚些时候需要一些属性，但是它一开始不存在或为空，那应该向这样设置一个初始值
+        data : {
+            newTodoText:'',
+            visitCount:0,
+            hideCompletedTodos:false,
+            todos: [],
+            error: null
+        }
+        */
+        var obj = {
+            foo: 'bar'
+        }
+        //唯一的例外是使用 Object.freeze()，这会阻止修改现有的属性，也意味着响应系统无法再追踪变化。
+        Object.freeze(obj)
+
+        new Vue({
+            el: '#app',
+            data: obj
+        })
+        //修改obj.foo属性  不会响应到vue实例中的data
+        obj.foo = 'hi';
+       
+    </script>
+</body>
+</html>
