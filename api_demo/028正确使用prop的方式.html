@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <p>我是父组件的数据：{{count}}</p>
+        <child :count="count"></child>
+    </div>
+    <script>
+        // 正确使用prop的方式
+        /*
+        在两种情况下，我们很容易忍不住想去修改 prop 中数据：
+        1.Prop 作为初始值传入后，子组件想把它当作局部数据来用；
+            props: ['initialCounter'],
+                data: function () {
+                return { counter: this.initialCounter }
+            }
+        2.Prop 作为原始数据传入，由子组件处理成其它数据输出。
+            props: ['size'],
+                computed: {
+                normalizedSize: function () {
+                    return this.size.trim().toLowerCase()
+                }
+            }
+        */
+
+        /*
+        注意在 JavaScript 中对象和数组是引用类型，
+            指向同一个内存空间，
+            如果 prop 是一个对象或数组，
+            在子组件内部改变它会影响父组件的状态。
+        */
+        Vue.component('child', {
+            props: ['count'],
+            data: function () {
+                return { 
+                    // 定义一个局部变量，并用 prop 的值初始化它：
+                    counter: this.count 
+                }
+            },
+            template: `
+                <div>
+                    <input v-model="counter"/><br/>
+                    <span>我是子组件的数据：{{ counter }}</span>
+                </div>
+            `
+        })
+
+        new Vue({
+            el: '#example',
+            data:{
+                count:100
+            }
+        })
+    </script>
+</body>
+</html>

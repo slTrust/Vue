@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 不传递prop-e值 会返回默认的值 :prop-e="propE" -->
+       <my-component 
+        :prop-a="propA"
+        :prop-b="propB"
+        :prop-c="propC"
+        :prop-d="propD"
+        :prop-f="propF"
+       ></my-component>
+    </div>
+    <script>
+
+        Vue.component('my-component', {
+            props: {
+                // 基础类型检测 (`null` 指允许任何类型)
+                propA: Number,
+                // 可能是多种类型
+                propB: [String, Number],
+                // 必传且是字符串
+                propC: {
+                    type: String,
+                    required: true
+                },
+                // 数值且有默认值    不传递默认为100  传递但是必须是数值类型  如果传递的不是数值类型就提示警告信息
+                propD: {
+                    type: Number,
+                    default: 100
+                },
+                // 数组/对象的默认值应当由一个工厂函数返回    不传递propE时候  默认返回default函数的返回值
+                propE: {
+                    type: Object,
+                    default: function () {
+                        return { message: 'hello' }
+                    }
+                },
+                // 自定义验证函数
+                propF: {
+                    //如果propF的值  不大于10  vue就会提示警告
+                    validator: function (value) {
+                        return value > 10
+                    }
+                }
+            },
+            template:`
+                <div>
+                    {{propA}}
+                    <br/>
+                    {{propB}}
+                    <br/>
+                    {{propC}}
+                    <br/>
+                    {{propD}}
+                    <br/>
+                    {{propE}}
+                    <br/>
+                    {{propF}}
+                </div>
+            `
+        })
+
+     
+       
+        new Vue({
+            el: '#app',
+            data:{
+                propA:1,
+                propB:2,
+                propC:'3',
+                propD:4,
+                propE:new Object(),
+                propF:80
+            }
+        })
+    </script>
+</body>
+</html>
