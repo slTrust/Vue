@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-if="seen">现在你看到我了</p>
+        <br>
+        <a v-bind:href="url">百度</a>
+        <span>缩写形式</span>
+        <a :href="url">百度</a>
+        <br>
+        <button @click="showMsg">showMsg</button>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                seen:true,
+                url:'www.baidu.com',
+                msg:'hi'
+            },
+            methods:{
+                showMsg:function(){
+                    alert(this.msg)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
