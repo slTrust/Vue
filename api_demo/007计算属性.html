@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <p>原始数据msg:{{msg}}</p>
+       <p>计算属性反序后的msg:{{revertMsgStr}}</p>
+       <hr>
+       <h4>计算属性vs方法</h4>
+       <p>计算属性是有缓存的，方法会每次都调用如果是10000个数据的渲染。。。</p>
+       <p>计算属性{{revertMsgStr}}</p>
+       <p>方法：{{revertMsgStr2()}}</p>
+
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'hello'
+            },
+            computed:{
+                // revertMsgStr是依赖于 msg的  你可以在控制台修改msg的值  都会影响revertMsgStr的值
+                revertMsgStr:function(){
+                    return this.msg.split('').reverse().join('')
+                }
+            },
+            methods: {
+                revertMsgStr2: function () {
+                    return this.msg.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
