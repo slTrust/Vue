@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <!-- 
+            data-3d-date-picker="true" 会和模板元素融合 
+            class="date-picker-theme-dark" 也会融合
+        -->
+        <bs-date-input data-3d-date-picker="true"  class="date-picker-theme-dark"></bs-date-input>
+    </div>
+    <script>
+        // 注册
+        Vue.component('bs-date-input', {
+            // class 和 style 特性会更聪明一些，这两个特性的值都会做合并 (merge) 操作
+            template: '<input type="date" class="form-control">'
+        })
+
+        // 创建根实例
+        new Vue({
+            el: '#example'
+        })
+    </script>
+</body>
+</html>
