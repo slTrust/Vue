@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <my-a></my-a>
+        <my-b></my-b>
+        <my-c></my-c>
+    </div>
+    <script>
+        var bus = new Vue();
+        bus.$on('sendmsg',function(e){
+            alert(e)
+        })
+        // 注册
+        Vue.component('my-a', {
+            template: '<div @click="send">A custom component!</div>',
+            methods:{
+                send(){
+                    bus.$emit('sendmsg',1)
+                }
+            }
+        })
+
+        // 注册
+        Vue.component('my-b', {
+            template: '<div @click="send">B custom component!</div>',
+            methods:{
+                send(){
+                    bus.$emit('sendmsg',2)
+                }
+            }
+        })
+
+        // 注册
+        Vue.component('my-c', {
+            template: '<div @click="send">C custom component!</div>',
+            methods:{
+                send(){
+                    bus.$emit('sendmsg',3)
+                }
+            }
+        })
+
+        // 创建根实例
+        new Vue({
+            el: '#example'
+        })
+
+        
+    </script>
+</body>
+</html>

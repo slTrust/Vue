@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="counter-event-example">
+        <p v-for="item in msgs">{{item}}</p>
+        <send-msg v-on:receivemsg="receiveMsg"></send-msg>
+    </div>
+    <script>
+        Vue.component('send-msg', {
+            template: `
+                <div>
+                    <input v-model="content"/>
+                    <button v-on:click="sendMsg">给父级发消息</button>
+                </div>
+            `,
+            data: function () {
+                return {
+                    content: ''
+                }
+            },
+            methods: {
+                sendMsg: function () {
+                    // 传播给监听的事件
+                    this.$emit('receivemsg',{msg:this.content})
+                }
+            }
+        })
+
+        new Vue({
+            el: '#counter-event-example',
+            data: {
+                msgs:[]
+            },
+            methods: {
+                receiveMsg: function (payload) {
+                    console.log(payload)
+                    this.msgs.push(payload.msg)
+                }
+            }
+        })
+
+
+    </script>
+</body>
+</html>
