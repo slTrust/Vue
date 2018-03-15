@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <my-component>
+            <p>单个插槽-内容1</p>
+            <p>单个插槽-内容2</p>
+        </my-component>
+    </div>
+    <script>
+        // 注册
+        Vue.component('my-component', {
+            template: `
+            <div>
+                <h2>我是子组件的标题</h2>
+                <slot>
+                    只有在没有要分发的内容时才会显示。
+                </slot>
+            </div>
+            `
+        })
+
+        // 创建根实例
+        new Vue({
+            el: '#example'
+        })
+    </script>
+</body>
+</html>
