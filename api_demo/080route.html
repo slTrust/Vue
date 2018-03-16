@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+    <script src="./vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+    <script>
+        const NotFound = { template: '<p>Page not found</p>' }
+        const Home = { template: '<p>home page</p>' }
+        const About = { template: '<p>about page</p>' }
+
+        const routes = {
+        '/080route.html': Home,
+        '/about': About
+        }
+
+        new Vue({
+            el: '#app',
+            data: {
+                currentRoute: window.location.pathname
+            },
+            computed: {
+                ViewComponent () {
+                    console.log(this.currentRoute)
+                    return routes[this.currentRoute] || NotFound
+                }
+            },
+            render (h) { return h(this.ViewComponent) }
+        })
+    </script>
+</body>
+</html>

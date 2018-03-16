@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <div v-demo="color">2222</div>
+        <p>很多时候，你可能想在 bind 和 update 时触发相同行为，而不关心其它的钩子</p>
+        <hr>
+        <p>对象字面量</p>
+        <div v-demo2="{ color: '#666', text: 'hello!' }"></div>
+    </div>
+    <script>
+        Vue.directive('demo', function (el, binding) {
+            console.log(el,binding)
+            el.style.backgroundColor = binding.value
+        })
+
+        Vue.directive('demo2', function (el, binding) {
+            el.style.color = binding.value.color;
+            el.textContent= binding.value.text;
+            console.log(binding.value.color) // => "white"
+            console.log(binding.value.text)  // => "hello!"
+        })
+    
+        new Vue({
+            el: '#example',
+            data:{
+                color:'pink'
+            }
+        })
+
+     
+    </script>
+</body>
+</html>

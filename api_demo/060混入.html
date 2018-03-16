@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        我是混入对象定义的数据 msg {{msg}} 
+        <br>
+        我是实例对象定义的数据 msg {{msg}}  同名属性和方法  实例优先覆盖混入对象的属性和方法
+        <br>
+        我是混入对象定义的数据msg2 {{msg2}}
+        <p>混入对象的钩子函数会在实例对象的钩子函数之前调用</p>
+        <p>混入对象和实例上的methods里的方法 不同名就会合并到一个methods里  同名则以实例的为准</p>
+    </div>
+    <script>
+        // step1 定义一个混入对象
+        var myMixin = {
+            created: function () {
+                console.log('混入对象的created方法')
+                this.hello()
+            },
+            data:{
+                msg:'222',
+                msg2:'333'
+            },
+            methods: {
+                hello: function () {
+                    console.log('混入对象的hello!')
+                }
+            }
+        }
+
+        // 创建根实例
+        new Vue({
+            //  step2 使用 mixins属性  添加混入对象  可以混入多个  数组的形式
+            mixins:[myMixin],
+            el: '#example',
+            data:{
+                msg:'hi'
+            },
+            created(){
+                console.log('实例对象的created方法')
+                this.hello();
+            },
+            methods:{
+                // 如果实例本身和混入对象有相同的方法  则实例会覆盖混入对象的方法
+                hello(){
+                    console.log('实例对象的hello')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
