@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>
+            <router-link to="/user/aaa">Go to aaa</router-link>
+            <router-link to="/user/bbb">Go to bbb</router-link>
+            <router-link to="/user/ccc/age/25">Go to ccc</router-link>
+            <router-link to="/user/ddd/age/36">Go to ddd</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+    <script>
+        const User = {
+            template: '<div>User {{ $route.params.id }}</div>',
+            // 对于动态路由，如果是从一个  /user/aaa  ==> /user/bbb 是不会销毁组件后在进行创建的会直接复用
+            // 原来的组件实例会被复用。因为两个路由都渲染同个组件，比起销毁再创建，复用则显得更加高效。不过，这也意味着组件的生命周期钩子不会再被调用。
+            watch: {
+                '$route' (to, from) {
+                    // 对路由变化作出响应...
+                    console.log(to)
+                    console.log(from)
+                }
+            }
+        }
+
+        const UserInfo = {
+            template: '<div>UserInfo {{ $route.params.num }}</div>'
+        }
+
+        const router = new VueRouter({
+            routes: [
+                // 动态路径参数 以冒号开头
+                { path: '/user/:id', component: User },
+                { path: '/user/:id/age/:num', component: UserInfo }
+            ]
+        })
+        const app = new Vue({
+            el:'#app',
+            router
+        })
+
+    </script>
+</body>
+</html>
